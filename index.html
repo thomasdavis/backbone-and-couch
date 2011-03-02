@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="utf-8"/>
+        <title></title>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+        <script src="http://ajax.cdnjs.com/ajax/libs/underscore.js/1.1.4/underscore-min.js"></script>
+        <script src="http://ajax.cdnjs.com/ajax/libs/backbone.js/0.3.3/backbone-min.js"></script>
+    </head>
+
+    <body lang="en">
+        <div id="app"></div>
+        
+        <script type="text/javascript">
+        
+        
+        controller = Backbone.Controller.extend({
+            routes: { "*page": "defaultRoute" }, //Route all hashtags to one route
+            defaultRoute: function( page ) { console.log(page); }
+        });
+        new controller;
+        Backbone.history.start();
+        
+        AppView = Backbone.View.extend({
+            el: $("#app"),
+            initialize: function(){
+                this.el.append("asd");
+                $.ajax({
+                    url: "http://74.207.246.129:5984/",
+                    type: "GET",
+                    dataType: "jsonp",
+                    success: function(data ) { console.log(data) }
+                });
+            }
+        });
+        
+        var appview = new AppView;
+        
+        </script>
+    </body>
+
+    </html>
